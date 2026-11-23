@@ -1,0 +1,7 @@
+services:
+  iris-api:
+    build: .
+    container_name: iris_prod_service
+    ports:
+      - "8000:8000"
+    restart: always
