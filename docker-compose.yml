@@ -5,3 +5,33 @@ services:
     ports:
       - "8000:8000"
     restart: always
+    networks:
+      - monitor-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus_tsdb
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    restart: always
+    depends_on:
+      - iris-api
+    networks:
+      - monitor-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_ui
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - prometheus
+    networks:
+      - monitor-network
+
+networks:
+  monitor-network:
+    driver: bridge

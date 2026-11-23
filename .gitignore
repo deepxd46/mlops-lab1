@@ -1,18 +1,18 @@
-﻿# Python
+# Python
 venv/
+venv_drift/
 __pycache__/
 *.pyc
-
+.pytest_cache/
 # MLflow
 mlflow.db
 mlflow_artifacts/
 mlruns/
-
 # Temporary files
 plots/
 .vscode/
 *.log
-
+.DS_Store
 # Environment variables
 .env
 .env.*
